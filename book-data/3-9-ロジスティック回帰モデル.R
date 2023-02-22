@@ -83,7 +83,8 @@ exp(coef["nutrition"])
 
 # 95%ベイズ信用区間付きの回帰曲線
 eff <- marginal_effects(glm_binom_brms, 
-                        effects = "nutrition:solar")
+                        effects = "nutrition:solar",
+                        conditions = data.frame(size = 10))
 
 plot(eff, points = TRUE)
 
@@ -99,7 +100,8 @@ stanplot(glm_binom_brms, type = "intervals", pars = "^b_")
 set.seed(1)
 eff_pre <- marginal_effects(glm_binom_brms, 
                             method = "predict",
-                            effects = "nutrition:solar")
+                            effects = "nutrition:solar",
+                            conditions = data.frame(size = 10))
 plot(eff_pre, points = TRUE)
 
 
